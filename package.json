@@ -1,6 +1,7 @@
 {
   "name": "livraria",
   "version": "1.0.0",
+  "type": "module",
   "description": "Backend NodeJS para o app de Livraria",
   "main": "index.js",
   "scripts": {
@@ -16,6 +17,7 @@
   "author": "Gabriel Guarilia",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "mssql": "^7.2.1"
   }
 }
