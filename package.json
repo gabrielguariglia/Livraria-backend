@@ -1,0 +1,21 @@
+{
+  "name": "livraria",
+  "version": "1.0.0",
+  "description": "Backend NodeJS para o app de Livraria",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "store",
+    "procedure",
+    "sql",
+    "server",
+    "node"
+  ],
+  "author": "Gabriel Guarilia",
+  "license": "MIT",
+  "dependencies": {
+    "mssql": "^7.2.1"
+  }
+}
