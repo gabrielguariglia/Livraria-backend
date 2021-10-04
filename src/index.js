@@ -1,21 +1,34 @@
-import sql from 'mssql'
-import { sqlConfig } from './sql/config.js'
+import express from 'express'
+const app = express()
+const port = 4000
 
-sql.on('error', err =>{
-    console.error(err)
+app.use(express.urlencoded({extended: true}))
+app.use(express.json())
+app.disable('x-powered-by')
+
+import rotasLivraria from './routes/livros.js'
+
+//Rota restfull 
+app.use('/api/livros', rotasLivraria)
+
+//Rota default
+app.get('/api', (req,res) => {
+    res.status(200).json({
+        mensagem: 'Api funcionando',
+        versao:' 1.0.3'
+    })
 })
 
-sql.connect(sqlConfig).then(pool => {
-    //Vamos executar a Stored Procedure
-    return pool.request()
-    .input('nome', sql.VarChar(50), 'Harry Potter')
-    .input('genero', sql.VarChar(50), 'aventura')
-    .input('autor', sql.VarChar(50), 'Jk Rowling')
-    .input('preco', sql.Numeric, -15)
-    .output('codigogerado', sql.Int)
-    .execute ('SP_I_LIV_INCLUIDO')
-}).then(result => {
-    console.log(result)
-}).catch(err =>{
-    console.log(err.mesage)
+//Rota de conteúdo público
+app.use('/', express.static('public'))
+
+//Rota de erro 404
+app.use(function(req, res){
+    res.status(404).json({
+        mensagem: `A rota ${req.originalUrl} não existe`
+    })
+})
+
+app.listen(port, function(){
+    console.log(`servidor rodando na rota ${port}`)
 })

@@ -5,13 +5,13 @@ export const sqlConfig = {
     password: process.env.DB_PWD,
     database: process.env.DB_NOME,
     server: process.env.DB_SERVER,
-    pool:{
+    pool: {
         max: 10,
-        min:0,
+        min: 0,
         idleTimeoutMillis: 3000
     },
-    options:{
-        encrypt: false,//Apenas para o Azure
-        trustServerCertificate: true //Apenas true quando o servidor é local
+    options: {
+        encrypt: false,
+        trustServerCertificate: true
     }
 }
